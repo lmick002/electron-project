@@ -1,17 +1,9 @@
-import { Channels } from 'main/preload';
-
+import * as Supabase from '../main/preload/supabase/types';
+import * as Axios from '../main/preload/API/types';
 declare global {
   interface Window {
-    electron: {
-      ipcRenderer: {
-        sendMessage(channel: Channels, args: unknown[]): void;
-        on(
-          channel: Channels,
-          func: (...args: unknown[]) => void
-        ): (() => void) | undefined;
-        once(channel: Channels, func: (...args: unknown[]) => void): void;
-      };
-    };
+    supabase: Supabase.Api;
+    API: Axios.Api;
   }
 }
 
