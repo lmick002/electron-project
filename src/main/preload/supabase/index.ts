@@ -1,4 +1,3 @@
-// import { ipcRenderer } from 'electron';
 import IpcRendererService from '../../../services/ipc_renderer_service';
 import { Block } from '../../../types/Block';
 
