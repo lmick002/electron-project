@@ -9,10 +9,11 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, contextBridge } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import TrayBuilder from './tray';
 import { resolveHtmlPath } from './util';
 
 class AppUpdater {
@@ -24,7 +25,7 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
-
+export let tray = new TrayBuilder(mainWindow as unknown as BrowserWindow);
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -95,6 +96,9 @@ const createWindow = async () => {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
+  tray = new TrayBuilder(mainWindow);
+  tray.buildTray();
+  // contextBridge.exposeInMainWorld('tray', tray);
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
     shell.openExternal(edata.url);

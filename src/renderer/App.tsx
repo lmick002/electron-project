@@ -3,6 +3,7 @@ import icon from '../../assets/icon.svg';
 import './App.css';
 
 const Hello = () => {
+  console.log(window, 'window');
   return (
     <div>
       <div className="Hello">
@@ -40,6 +41,7 @@ const Hello = () => {
 };
 
 export default function App() {
+  // console.log(window.tray);
   return (
     <Router>
       <Routes>
