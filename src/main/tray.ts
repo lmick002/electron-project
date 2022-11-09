@@ -1,4 +1,4 @@
-import { Menu, BrowserWindow, Tray } from 'electron';
+import { BrowserWindow, Tray } from 'electron';
 
 export default class TrayBuilder {
   mainWindow: BrowserWindow;
@@ -14,16 +14,6 @@ export default class TrayBuilder {
   }
   buildTray(): Tray {
     this.tray = new Tray('src/main/download2.png');
-
-    const contextMenu = Menu.buildFromTemplate([
-      { label: 'Item1', type: 'radio' },
-      { label: 'Item2', type: 'radio' },
-      { label: 'Item3', type: 'radio', checked: true },
-      { label: 'Item4', type: 'radio' },
-    ]);
-
-    this.tray.setToolTip('Tray menu');
-    this.tray.setContextMenu(contextMenu);
     return this.tray;
   }
 }
