@@ -9,7 +9,6 @@ export default class TrayBuilder {
   }
 
   getInstance(): Tray | undefined {
-    console.log(this.tray, '===>kfdlcld,');
     return this.tray;
   }
   buildTray(): Tray {

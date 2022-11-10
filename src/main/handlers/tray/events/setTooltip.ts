@@ -1,8 +1,8 @@
 import { IpcMainInvokeEvent } from 'electron';
 import { trayBuilder } from '../../../main';
 
-export async function setTooltip(event: IpcMainInvokeEvent, tooltip: string) {
+export async function setToolTip(event: IpcMainInvokeEvent, title: string) {
   let tray = trayBuilder.getInstance();
-  const result = tray?.setToolTip(tooltip);
+  const result = tray?.setToolTip(title);
   return result;
 }

@@ -1,3 +1,5 @@
+import { supabaseClient } from 'supabase-client';
+import { ipcRenderer } from 'electron';
 import IpcRendererService from '../../../services/ipc_renderer_service';
 import { Block } from '../../../types/Block';
 
@@ -20,3 +22,14 @@ export async function upsert(blocks: Block[]): Promise<void> {
 export async function remove(Id: string): Promise<void> {
   return await IpcRendererService.invoke('remove', Id);
 }
+
+// export async function initializeBroadcastingListener(cb) {
+//   let clients = {
+//     supabaseClient.channel('')
+//   }
+//   supabaseClient.channel('').on('broadcast', { event: '*' }, (data) => {
+
+//   });
+// }
+
+// const supbabaseClnt = inti

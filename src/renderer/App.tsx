@@ -3,9 +3,6 @@ import icon from '../../assets/icon.svg';
 import './App.css';
 
 const Hello = () => {
-  // window.tray.setTitle('hii');
-  // console.log(window.tray.setTitle, '=-->tray');
-  // window.tray.setTitle('hello');
   return (
     <div>
       <div className="Hello">
@@ -43,7 +40,6 @@ const Hello = () => {
 };
 
 export default function App() {
-  window.tray.setTitle('hii');
   return (
     <Router>
       <Routes>
