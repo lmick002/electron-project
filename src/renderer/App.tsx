@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.css';
 
 const Hello = () => {
+  // const func = (val: string) => {
+  //   console.log(val);
+  // };
+
+  // useEffect(() => {
+  //   (window as any).supabase.onBroadcastingListener(func);
+  // }, []);
+
   return (
     <div>
       <div className="Hello">

@@ -1,4 +1,3 @@
-import { supabaseClient } from 'supabase-client';
 import { ipcRenderer } from 'electron';
 import IpcRendererService from '../../../services/ipc_renderer_service';
 import { Block } from '../../../types/Block';
@@ -23,13 +22,35 @@ export async function remove(Id: string): Promise<void> {
   return await IpcRendererService.invoke('remove', Id);
 }
 
-// export async function initializeBroadcastingListener(cb) {
-//   let clients = {
-//     supabaseClient.channel('')
-//   }
-//   supabaseClient.channel('').on('broadcast', { event: '*' }, (data) => {
+export async function onPresenceListener(
+  args: (a: string) => void
+): Promise<void> {
+  return new Promise((resolve) => {
+    ipcRenderer.invoke('presence-listener', '');
+    ipcRenderer.on('presence', (event, data) => {
+      args(data);
+    });
+  });
+}
 
-//   });
-// }
+export async function onBroadcastingListener(
+  args: (a: string) => void
+): Promise<void> {
+  return new Promise((resolve) => {
+    IpcRendererService.invoke('broadcasting-listener', '');
+    ipcRenderer.on('broadcasting', (event, data) => {
+      args(data);
+    });
+  });
+}
 
-// const supbabaseClnt = inti
+export async function onPostgressListener(
+  args: (a: string) => void
+): Promise<void> {
+  return new Promise((resolve) => {
+    IpcRendererService.invoke('postgress-listener', '');
+    ipcRenderer.on('postgress', (event, data) => {
+      args(data);
+    });
+  });
+}
