@@ -7,6 +7,12 @@ export interface Api {
   upsert(blocks: Block[]): Promise<void>;
   remove(Id: string): Promise<void>;
   onPresenceListener(args: (a: string) => void): Promise<void>;
-  onBroadcastingListener(args: (a: string) => void): Promise<void>;
-  onPostgressListener(args: (a: string) => void): Promise<void>;
+  onBroadcastingListener(
+    args: (a: string) => void,
+    channel: { event: string; channelName: string }
+  ): Promise<void>;
+  onPostgressListener(
+    args: (a: string) => void,
+    channel: { event: string; channelName: string }
+  ): Promise<void>;
 }

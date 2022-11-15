@@ -4,13 +4,19 @@ import icon from '../../assets/icon.svg';
 import './App.css';
 
 const Hello = () => {
-  // const func = (val: string) => {
-  //   console.log(val);
-  // };
+  const func = (val: string) => {
+    console.log(val);
+  };
 
-  // useEffect(() => {
-  //   (window as any).supabase.onBroadcastingListener(func);
-  // }, []);
+  useEffect(() => {
+    const channel: { event: string; channelName: string } = {
+      event: 'blockupdate',
+      channelName: 'block-updates-270804c8-eaeb-3b9a-3240-c71a09e53716',
+    };
+
+    window.supabase.onBroadcastingListener(func, channel);
+    window.supabase.onPostgressListener(func, channel);
+  }, []);
 
   return (
     <div>

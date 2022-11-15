@@ -34,10 +34,11 @@ export async function onPresenceListener(
 }
 
 export async function onBroadcastingListener(
-  args: (a: string) => void
+  args: (a: string) => void,
+  channel: { event: string; channelName: string }
 ): Promise<void> {
   return new Promise((resolve) => {
-    IpcRendererService.invoke('broadcasting-listener', '');
+    IpcRendererService.invoke('broadcasting-listener', channel);
     ipcRenderer.on('broadcasting', (event, data) => {
       args(data);
     });
@@ -45,10 +46,11 @@ export async function onBroadcastingListener(
 }
 
 export async function onPostgressListener(
-  args: (a: string) => void
+  args: (a: string) => void,
+  channel: { event: string; channelName: string }
 ): Promise<void> {
   return new Promise((resolve) => {
-    IpcRendererService.invoke('postgress-listener', '');
+    IpcRendererService.invoke('postgress-listener', channel);
     ipcRenderer.on('postgress', (event, data) => {
       args(data);
     });
